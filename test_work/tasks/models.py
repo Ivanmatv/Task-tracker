@@ -1,8 +1,4 @@
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-
-from .tasks import process_task
 
 
 class Task(models.Model):
@@ -36,9 +32,3 @@ class Task(models.Model):
 
     def __str__(self) -> str:
         return f'{self.name}'
-
-
-@receiver(post_save, sender=Task)
-def start_task_processing(sender, instance, created, **kwargs):
-    if created:
-        process_task.delay(instance.id)
