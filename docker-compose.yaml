@@ -1,0 +1,47 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres
+    volumes:
+      - /var/lib/postgresql/data/
+    env_file:
+      - .env
+
+  rabbitmq:
+    image: 'rabbitmq:3-management'
+    ports:
+      - '5672:5672'
+      - '15672:15672'
+
+  elasticsearch:
+    image: 'elasticsearch:7.9.2'
+    environment:
+      - discovery.type=single-node
+    ports:
+      - '9200:9200'
+      - '9300:9300'
+
+  test_work:
+    restart: always
+    build: 
+      context: ./test_work
+    ports: 
+      - "8000:8000"
+    command: [ "python3", "./test_work/manage.py", "runserver", "0.0.0.0:8000"]
+    volumes: 
+      - ./db:/app/test_work/db
+    env_file:
+      - ./.env 
+
+  celery:
+    build: ./test_work
+    command: ['celery', '--workdir=./test_work', '-A', 'test_work', 'worker' ]
+    volumes:
+      - .:/app
+
+  flower:
+    build: .
+    command: celery -A test_work flower --port=5555
+    ports:
+      - '5555:5555'

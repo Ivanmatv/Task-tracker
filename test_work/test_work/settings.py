@@ -106,7 +106,7 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
 }
 
-CELERY_BROKER_URL = 'amqp://rabbitmq'
+CELERY_BROKER_URL = 'amqp://localhost'
 CELERY_RESULT_BACKEND = 'amqp://localhost'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'

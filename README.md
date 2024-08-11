@@ -1,13 +1,12 @@
-# 2Engine
+# Task_trecker
 
-# Test work
-Тестовое задание. 
-Система управления задачами.
+# Description
+System of management tasks.
 
-## Запуск проекта
+## Launch project 
 
-### Создайте файл .env
-Пример:
+### Creat file .env
+Example:
 ```bash
 DB_ENGINE=django.db.backends.postgresql
 DB_NAME=postgres
@@ -15,29 +14,31 @@ POSTGRES_USER=postgres
 POSTGRES_PASSWORD=postgres
 DB_HOST=db
 DB_PORT=5432
-SECRET_KEY=<ключ в одинарных ковычках>
+SECRET_KEY=<the key is in single quotes>
 ```
 
-1. Клонируйте репозиторий:
+1. Clone repository:
     ```bash
     git clone https://github.com/Ivanmatv/2Engine.git
-    cd test_work
+    cd 2Engine
     ```
 
-2. Запустите Docker:
+2. Launch Docker:
     ```bash
     docker-compose up --build
     ```
 
-3. Примените миграции:
+3. Launch migrations:
     ```bash
     docker-compose exec web python manage.py migrate
     ```
 
-4. Доступ к Flower:
-    Откройте `http://localhost:5555` для доступа к Flower.
+4. Access to Flower:
+    ```
+    http://localhost:5555`
+    ```
 
-5. Остановить работу всех контейнеров командой:
+5. Stop the operation of all containers with the command:
     ```
     docker-compose down
     ```

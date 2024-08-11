@@ -1,13 +1,18 @@
 FROM python:3.11-slim
 
-WORKDIR /app
+RUN apt-get update -y
+RUN apt-get upgrade -y
 
-COPY requirements.txt requirements.txt
+RUN mkdir /app
+
+COPY requirements.txt .
 
 RUN python -m pip install --upgrade pip
 
 RUN pip install -r requirements.txt
 
-COPY . .
+COPY test_work/ /app
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "task_manager.wsgi:application"]
+WORKDIR /app
+
+CMD ["python3", "manage.py", "runserver", "0:8000"] 
