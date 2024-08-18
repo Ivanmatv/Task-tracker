@@ -4,9 +4,9 @@ from django.db import models
 class Task(models.Model):
 
     STATUS = (
-        ('В очереди', 'В очереди'),
-        ('В процессе', 'В процессе'),
-        ('Завершена', 'Завершена')
+        ('In a queue', 'In a queue'),
+        ('In process', 'In process'),
+        ('Done', 'Done')
     )
     name = models.CharField(
         verbose_name='Name',

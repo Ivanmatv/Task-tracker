@@ -9,7 +9,7 @@ SECRET_KEY = os.getenv('SECRET_KEY',
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'testserver']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -106,8 +106,8 @@ SPECTACULAR_SETTINGS = {
     'SERVE_INCLUDE_SCHEMA': False,
 }
 
-CELERY_BROKER_URL = 'amqp://localhost'
-CELERY_RESULT_BACKEND = 'amqp://localhost'
+# CELERY_BROKER_URL = '//localhost:15672'
+# CELERY_RESULT_BACKEND = '//localhost:15672'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
