@@ -18,7 +18,7 @@ class TaskModelTest(TestCase):
         self.assertIsInstance(self.task, Task)
         self.assertEqual(self.task.name, "Test Task")
         self.assertEqual(self.task.descriptions, "This is a test task.")
-        self.assertEqual(self.task.status, "В очереди")
+        self.assertEqual(self.task.status, "In a queue")
         self.assertIsNotNone(self.task.data_creation)
 
     def test_task_str_method(self):
